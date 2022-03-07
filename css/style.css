@@ -1,0 +1,34 @@
+header{
+    height: 10vh;
+    line-height: 10vh;
+}
+
+main{
+    background-color: rgb(127, 255, 212);
+}
+
+footer{
+    height: 5vh;
+}
+
+#game-field{
+    height: 85vh;
+    width: 85vh;
+}
+
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    cursor: pointer;
+    user-select: none;
+}
+
+.safe{
+    background-color:rgb(100, 149, 237);
+}
+
+.bomb{
+    background-color: rgb(220, 20, 60);
+}
