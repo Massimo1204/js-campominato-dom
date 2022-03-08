@@ -40,9 +40,6 @@ function bombSpots(quantity,size){
             bombs[i] = num;
         }
     }
-    for(let i =0; i<quantity; i++){
-        console.log(bombs[i]);
-    }
     return bombs;
 }
 
@@ -50,6 +47,7 @@ function bombSpots(quantity,size){
 function createField(size){
     gameField.innerHTML = '';
     let scoreCounter=0;
+    let playable = true;
     const bombs = bombSpots(quantity,size);
     for(let i=0;i<size;i++){
         const newBox = document.createElement('div');
@@ -59,8 +57,7 @@ function createField(size){
         newBox.innerHTML= i+1;
         gameField.appendChild(newBox);
         newBox.addEventListener('click', function(){
-            console.log(this);
-            if(!bombs.includes(parseInt(newBox.innerHTML))){
+            if(!bombs.includes(parseInt(newBox.innerHTML)) && playable){
                 newBox.classList.add('safe');
                 scoreCounter++;
                 score.innerHTML = "Punteggio : <span class='fw-bold fs-1 text-primary'> "+ scoreCounter +"</span>" ;
@@ -70,7 +67,10 @@ function createField(size){
                     document.querySelector("#game-field .box:nth-child("+bombs[i]+")").classList.add('bomb');
                 }
                 score.innerHTML = "<span class='fw-bold fs-2 text-danger'>Hai Perso!</span><br> Il tuo punteggio è :<span class='fw-bold fs-1 text-primary'> " + scoreCounter+"</span>" ;
+                playable=false;
             }
-        });
+        },{once:true});
+    
     }
 }
+
